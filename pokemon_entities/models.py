@@ -16,9 +16,9 @@ class Pokemon(models.Model):
                                 default='',
                                 blank=True,
                                 verbose_name='Японское название')
-    image = models.ImageField(null=True,
+    image = models.ImageField(upload_to='pokemon_images',
+                              default='default.png',
                               blank=True,
-                              upload_to='pokemon_images',
                               verbose_name='Изображение')
     description = models.TextField(default='',
                                    blank=True,
@@ -44,12 +44,24 @@ class PokemonEntity(models.Model):
     lat = models.FloatField(verbose_name='Широта')
     lon = models.FloatField(verbose_name='Долгота')
     appeared_at = models.DateTimeField(default=localtime(),
+                                       blank=True,
                                        verbose_name='Дата и время появления')
     disappeared_at = models.DateTimeField(default=localtime(),
+                                          blank=True,
                                           verbose_name='Дата и время \
                                               исчезновения')
-    level = models.IntegerField(default=0, verbose_name='Уровень')
-    health = models.IntegerField(default=0, verbose_name='Здоровье')
-    strength = models.IntegerField(default=0, verbose_name='Сила')
-    defence = models.IntegerField(default=0, verbose_name='Защита')
-    stamina = models.IntegerField(default=0, verbose_name='Выносливость')
+    level = models.IntegerField(default=0,
+                                blank=True,
+                                verbose_name='Уровень')
+    health = models.IntegerField(default=0,
+                                 blank=True,
+                                 verbose_name='Здоровье')
+    strength = models.IntegerField(default=0,
+                                   blank=True,
+                                   verbose_name='Сила')
+    defence = models.IntegerField(default=0,
+                                  blank=True,
+                                  verbose_name='Защита')
+    stamina = models.IntegerField(default=0,
+                                  blank=True,
+                                  verbose_name='Выносливость')
