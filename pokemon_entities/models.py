@@ -1,5 +1,6 @@
 from django.db import models  # noqa F401
-from django.utils.timezone import localtime
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 
 class Pokemon(models.Model):
@@ -40,25 +41,27 @@ class PokemonEntity(models.Model):
                                 verbose_name='Покемон')
     lat = models.FloatField(verbose_name='Широта')
     lon = models.FloatField(verbose_name='Долгота')
-    appeared_at = models.DateTimeField(default=localtime(),
+    appeared_at = models.DateTimeField(default=datetime(
+        1900, 1, 1, 0, 0, 0, 0, tzinfo=ZoneInfo(key='UTC')),
                                        blank=True,
                                        verbose_name='Дата и время появления')
-    disappeared_at = models.DateTimeField(default=localtime(),
+    disappeared_at = models.DateTimeField(default=datetime(
+        1900, 1, 1, 0, 0, 0, 0, tzinfo=ZoneInfo(key='UTC')),
                                           blank=True,
                                           verbose_name='Дата и время \
                                               исчезновения')
-    level = models.IntegerField(default=0,
+    level = models.IntegerField(null=True,
                                 blank=True,
                                 verbose_name='Уровень')
-    health = models.IntegerField(default=0,
+    health = models.IntegerField(null=True,
                                  blank=True,
                                  verbose_name='Здоровье')
-    strength = models.IntegerField(default=0,
+    strength = models.IntegerField(null=True,
                                    blank=True,
                                    verbose_name='Сила')
-    defence = models.IntegerField(default=0,
+    defence = models.IntegerField(null=True,
                                   blank=True,
                                   verbose_name='Защита')
-    stamina = models.IntegerField(default=0,
+    stamina = models.IntegerField(null=True,
                                   blank=True,
                                   verbose_name='Выносливость')
