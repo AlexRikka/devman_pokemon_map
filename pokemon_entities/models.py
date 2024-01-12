@@ -4,24 +4,20 @@ from django.utils.timezone import localtime
 
 class Pokemon(models.Model):
     """Покемон."""
-    id = models.AutoField(auto_created=True,
-                          primary_key=True)
+
     title = models.CharField(max_length=200,
                              verbose_name='Русское название')
     title_en = models.CharField(max_length=200,
-                                default='',
                                 blank=True,
                                 verbose_name='Английское название')
     title_jp = models.CharField(max_length=200,
-                                default='',
                                 blank=True,
                                 verbose_name='Японское название')
     image = models.ImageField(upload_to='pokemon_images',
                               default='default.png',
                               blank=True,
                               verbose_name='Изображение')
-    description = models.TextField(default='',
-                                   blank=True,
+    description = models.TextField(blank=True,
                                    verbose_name='Описание')
     parent = models.ForeignKey('self',
                                null=True,
@@ -36,8 +32,7 @@ class Pokemon(models.Model):
 
 class PokemonEntity(models.Model):
     """Единичная особь покемона на карте."""
-    id = models.AutoField(auto_created=True,
-                          primary_key=True)
+
     pokemon = models.ForeignKey(Pokemon,
                                 on_delete=models.CASCADE,
                                 verbose_name='Покемон')
