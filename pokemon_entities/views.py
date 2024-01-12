@@ -10,7 +10,7 @@ MOSCOW_CENTER = [55.751244, 37.618423]
 DEFAULT_IMAGE_URL = (
     'https://vignette.wikia.nocookie.net/pokemon/images/6/6e/%21.png/revision'
     '/latest/fixed-aspect-ratio-down/width/240/height/240?cb=20130525215832'
-    '&fill=transparent'
+    '&fill=transprevious_evolution'
 )
 
 
@@ -84,7 +84,7 @@ def show_pokemon(request, pokemon_id):
         'description': requested_pokemon.description,
     }
 
-    previous_evolution_pokemon = requested_pokemon.parent
+    previous_evolution_pokemon = requested_pokemon.previous_evolution
     if previous_evolution_pokemon:
         pokemon['previous_evolution'] = {
             'pokemon_id': previous_evolution_pokemon.id,
