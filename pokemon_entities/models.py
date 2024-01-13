@@ -28,7 +28,7 @@ class Pokemon(models.Model):
                                            verbose_name='Из кого \
                                                эволюционирует')
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.title
 
 
@@ -43,12 +43,12 @@ class PokemonEntity(models.Model):
     lon = models.FloatField(verbose_name='Долгота')
     appeared_at = models.DateTimeField(default=datetime(
         1900, 1, 1, 0, 0, 0, 0, tzinfo=ZoneInfo(key='UTC')),
-                                       blank=True,
-                                       verbose_name='Дата и время появления')
+        blank=True,
+        verbose_name='Дата и время появления')
     disappeared_at = models.DateTimeField(default=datetime(
         1900, 1, 1, 0, 0, 0, 0, tzinfo=ZoneInfo(key='UTC')),
-                                          blank=True,
-                                          verbose_name='Дата и время \
+        blank=True,
+        verbose_name='Дата и время \
                                               исчезновения')
     level = models.IntegerField(null=True,
                                 blank=True,
@@ -65,3 +65,6 @@ class PokemonEntity(models.Model):
     stamina = models.IntegerField(null=True,
                                   blank=True,
                                   verbose_name='Выносливость')
+
+    def __str__(self):
+        return f'Особь вида {self.pokemon.title} {self.id}'
