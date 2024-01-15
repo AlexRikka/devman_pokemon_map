@@ -1,6 +1,4 @@
 from django.db import models  # noqa F401
-from datetime import datetime
-from zoneinfo import ZoneInfo
 
 
 class Pokemon(models.Model):
@@ -15,7 +13,6 @@ class Pokemon(models.Model):
                                 blank=True,
                                 verbose_name='Японское название')
     image = models.ImageField(upload_to='pokemon_images',
-                              default='default.png',
                               blank=True,
                               verbose_name='Изображение')
     description = models.TextField(blank=True,
@@ -41,14 +38,12 @@ class PokemonEntity(models.Model):
                                 verbose_name='Покемон')
     lat = models.FloatField(verbose_name='Широта')
     lon = models.FloatField(verbose_name='Долгота')
-    appeared_at = models.DateTimeField(default=datetime(
-        1900, 1, 1, 0, 0, 0, 0, tzinfo=ZoneInfo(key='UTC')),
-        blank=True,
-        verbose_name='Дата и время появления')
-    disappeared_at = models.DateTimeField(default=datetime(
-        1900, 1, 1, 0, 0, 0, 0, tzinfo=ZoneInfo(key='UTC')),
-        blank=True,
-        verbose_name='Дата и время \
+    appeared_at = models.DateTimeField(null=True,
+                                       blank=True,
+                                       verbose_name='Дата и время появления')
+    disappeared_at = models.DateTimeField(null=True,
+                                          blank=True,
+                                          verbose_name='Дата и время \
                                               исчезновения')
     level = models.IntegerField(null=True,
                                 blank=True,
