@@ -62,8 +62,7 @@ def show_all_pokemons(request):
 
 
 def show_pokemon(request, pokemon_id):
-    for pokemon in Pokemon.objects.all():
-        requested_pokemon = get_object_or_404(Pokemon, id=pokemon_id)
+    requested_pokemon = get_object_or_404(Pokemon, id=pokemon_id)
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
     current_datetime = localtime()
